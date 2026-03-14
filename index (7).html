@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مبادرة تمكين الاستراتيجيات النوعية – مجمع السحن</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%);
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
+            color: white;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo-section h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .logo-section .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .user-info.show {
+            display: block;
+        }
+
+        .logout-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn:hover {
+            background: #b71c1c;
+        }
+
+        /* صفحة تسجيل الدخول */
+        .login-container {
+            max-width: 450px;
+            margin: 4rem auto;
+            background: white;
+            border-radius: 15px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .login-container h2 {
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 3px rgba(46,125,50,0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+        }
+
+        .toggle-form a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-right: 4px solid #c62828;
+            display: none;
+        }
+
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-right: 4px solid #2e7d32;
+            display: none;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            max-width: 900px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .team-section {
+            background: #f1f8f4;
+            border-right: 4px solid #2e7d32;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .team-section h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .team-member {
+            margin: 0.7rem 0;
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        .team-member strong {
+            color: #1b5e20;
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .nav-button {
+            background: white;
+            border: 3px solid #2e7d32;
+            color: #2e7d32;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-button:hover {
+            background: #2e7d32;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-button.primary {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .nav-button.primary:hover {
+            background: #1b5e20;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            color: #2e7d32;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #2e7d32;
+        }
+
+        .upload-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .file-upload {
+            border: 2px dashed #2e7d32;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 1rem 0;
+            background: #f9fdf9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            background: #e8f5e9;
+            border-color: #1b5e20;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-info {
+            margin-top: 1rem;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .strategies-table {
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .strategies-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .strategies-table th {
+            background: #2e7d32;
+            color: white;
+            padding: 1rem;
+            text-align: right;
+            font-size: 1.1rem;
+        }
+
+        .strategies-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: right;
+        }
+
+        .strategies-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .download-btn {
+            background: #1976d2;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            background: #1565c0;
+        }
+
+        .note-box {
+            background: #fff3e0;
+            border-right: 4px solid #ff9800;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .note-box strong {
+            color: #e65100;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #2e7d32;
+        }
+
+        .stat-card .number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2e7d32;
+            margin: 1rem 0;
+        }
+
+        .stat-card .label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #666;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: #444;
+        }
+
+        .privacy-notice {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 2px solid #1976d2;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .privacy-notice strong {
+            color: #0d47a1;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2e7d32;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .logo-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .stat-card .number {
+                font-size: 2rem;
+            }
+
+            .user-info {
+                position: static;
+                margin-top: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo-section">
+                <h1>🎓 مبادرة تمكين الاستراتيجيات النوعية</h1>
+                <p class="subtitle">مجمع السحن للمرحلة الثانوية</p>
+            </div>
+            <div class="user-info" id="userInfo">
+                <div>مرحباً، <strong id="userName"></strong></div>
+                <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة تسجيل الدخول -->
+    <div id="loginPage" class="content-section active">
+        <div class="login-container">
+            <h2>تسجيل الدخول</h2>
+            <div id="loginError" class="error-message"></div>
+            <div id="loginSuccess" class="success-message"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" required placeholder="teacher@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="submit-btn">دخول</button>
+            </form>
+            
+            <div class="toggle-form">
+                ليس لديك حساب؟ <a onclick="showRegister()">إنشاء حساب جديد</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة إنشاء حساب -->
+    <div id="registerPage" class="content-section">
+        <div class="login-container">
+            <h2>إنشاء حساب جديد</h2>
+            <div id="registerError" class="error-message"></div>
+            <div id="registerSuccess" class="success-message"></div>
+            
+            <form id="registerForm" onsubmit="return handleRegister(event)">
+                <div class="form-group">
+                    <label for="registerName">الاسم الكامل</label>
+                    <input type="text" id="registerName" required placeholder="أ. نورة المالكي">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" required placeholder="teacher@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="registerSubject">المادة التدريسية</label>
+                    <select id="registerSubject" required>
+                        <option value="">اختاري المادة</option>
+                        <option value="رياضيات">رياضيات</option>
+                        <option value="فيزياء">فيزياء</option>
+                        <option value="كيمياء">كيمياء</option>
+                        <option value="أحياء">أحياء</option>
+                        <option value="لغة عربية">لغة عربية</option>
+                        <option value="لغة إنجليزية">لغة إنجليزية</option>
+                        <option value="تاريخ">تاريخ</option>
+                        <option value="جغرافيا">جغرافيا</option>
+                        <option value="حاسب آلي">حاسب آلي</option>
+                        <option value="تربية إسلامية">تربية إسلامية</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">كلمة المرور</label>
+                    <input type="password" id="registerPassword" required placeholder="••••••••" minlength="6">
+                    <small style="color: #666; font-size: 0.85rem;">يجب أن تكون 6 أحرف على الأقل</small>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" id="registerConfirmPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="submit-btn" id="registerBtn">إنشاء الحساب</button>
+            </form>
+            
+            <div class="toggle-form">
+                لديك حساب؟ <a onclick="showLogin()">تسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- الصفحة الرئيسية -->
+    <div id="home" class="content-section">
+        <div class="container">
+            <div class="info-card">
+                <h2 class="page-title">عن المبادرة</h2>
+                <p class="description">
+                    مبادرة تعليمية رائدة تهدف إلى تمكين المعلمات في المرحلة الثانوية من خلال جمع وتوثيق الاستراتيجيات التعليمية المبتكرة وأوراق العمل النوعية. نسعى من خلال هذه المبادرة إلى بناء بنك معرفي شامل يسهم في رفع جودة التعليم وتبادل الخبرات التربوية بين المعلمات، مما ينعكس إيجابًا على العملية التعليمية ويحقق التميز المؤسسي.
+                </p>
+
+                <div class="team-section">
+                    <h3>📋 فريق المبادرة</h3>
+                    <div class="team-member">
+                        <strong>مديرة المجمع:</strong> أ. هله النفيعي
+                    </div>
+                    <div class="team-member">
+                        <strong>صاحبة المبادرة:</strong> أ. نورة المالكي - أ. مشاعل الشريف
+                    </div>
+                </div>
+
+                <div class="privacy-notice">
+                    <strong>🔒 إشعار الخصوصية</strong>
+                    <p>جميع الملفات محفوظة رسميًا في قاعدة البيانات وتستخدم لأغراض تعليمية فقط</p>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="#" class="nav-button primary" onclick="showSection('upload'); return false;">
+                        📤 رفع استراتيجية جديدة
+                    </a>
+                    <a href="#" class="nav-button" onclick="showSection('list'); return false;">
+                        📚 قائمة الاستراتيجيات
+                    </a>
+                    <a href="#" class="nav-button" onclick="showSection('impact'); return false;">
+                        📊 قياس الأثر
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة رفع الاستراتيجيات -->
+    <div id="upload" class="content-section">
+        <div class="container">
+            <div class="info-card">
+                <button class="back-button" onclick="showSection('home')">← العودة للرئيسية</button>
+                
+                <h2 class="page-title">رفع استراتيجية جديدة</h2>
+                
+                <div id="uploadError" class="error-message"></div>
+                <div id="uploadSuccess" class="success-message"></div>
+                
+                <form id="uploadForm" class="upload-form">
+                    <div class="form-group">
+                        <label for="strategyName">اسم الاستراتيجية</label>
+                        <input type="text" id="strategyName" required placeholder="مثال: استراتيجية التعلم النشط">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="strategyDescription">وصف الاستراتيجية</label>
+                        <textarea id="strategyDescription" rows="4" required placeholder="اكتبي وصفاً مختصراً للاستراتيجية وأهدافها..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>رفع ملف الاستراتيجية</label>
+                        <div class="file-upload" onclick="document.getElementById('strategyFile').click()">
+                            <input type="file" id="strategyFile" accept=".pdf,.doc,.docx,.ppt,.pptx" required>
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📎</div>
+                            <div>اضغطي هنا لاختيار الملف</div>
+                            <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                                (PDF, Word, PowerPoint - حتى 10 ميجابايت)
+                            </div>
+                            <div id="fileInfo" class="file-info"></div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">رفع الاستراتيجية</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة قائمة الاستراتيجيات -->
+    <div id="list" class="content-section">
+        <div class="container">
+            <div class="info-card">
+                <button class="back-button" onclick="showSection('home')">← العودة للرئيسية</button>
+                
+                <h2 class="page-title">قائمة الاستراتيجيات المرفوعة</h2>
+                
+                <div class="note-box">
+                    <strong>📂 معلومة:</strong>
+                    <p>جميع الملفات محفوظة في قاعدة البيانات ويمكن الوصول إليها من قبل الإدارة والمعلمات المصرح لهن.</p>
+                </div>
+
+                <div id="loadingStrategies" class="loading">
+                    <div class="spinner"></div>
+                    <div>جاري تحميل الاستراتيجيات...</div>
+                </div>
+
+                <div class="strategies-table" id="strategiesTableContainer" style="display: none;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>اسم المعلمة</th>
+                                <th>المادة</th>
+                                <th>اسم الاستراتيجية</th>
+                                <th>تاريخ الرفع</th>
+                                <th>تحميل</th>
+                            </tr>
+                        </thead>
+                        <tbody id="strategiesTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة قياس الأثر -->
+    <div id="impact" class="content-section">
+        <div class="container">
+            <div class="info-card">
+                <button class="back-button" onclick="showSection('home')">← العودة للرئيسية</button>
+                
+                <h2 class="page-title">قياس أثر المبادرة</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="label">إجمالي الاستراتيجيات</div>
+                        <div class="number" id="totalStrategies">0</div>
+                        <p style="color: #666; margin-top: 0.5rem;">استراتيجية مرفوعة</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="label">المعلمات المشاركات</div>
+                        <div class="number" id="totalTeachers">0</div>
+                        <p style="color: #666; margin-top: 0.5rem;">معلمة مساهمة</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="label">أكثر المواد تفاعلاً</div>
+                        <div class="number" style="font-size: 1.5rem;" id="topSubject">-</div>
+                        <p style="color: #666; margin-top: 0.5rem;">مادة دراسية</p>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <strong>📈 مؤشرات الأداء:</strong>
+                    <p>يتم حساب الإحصائيات تلقائيًا من قاعدة البيانات في الوقت الفعلي.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p><strong>مبادرة تمكين الاستراتيجيات النوعية – مجمع السحن</strong></p>
+            <p>© 2024 جميع الحقوق محفوظة | مخصص للاستخدام التعليمي فقط</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                📧 للاستفسارات: يرجى التواصل مع فريق المبادرة
+            </p>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+        import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js';
+
+        // إعدادات Firebase - يجب استبدالها بإعداداتك الخاصة
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // تهيئة Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // جعل المتغيرات عامة
+        window.auth = auth;
+        window.db = db;
+        window.storage = storage;
+        window.currentUser = null;
+
+        // مراقبة حالة تسجيل الدخول
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                window.currentUser = user;
+                
+                // الحصول على بيانات المستخدم الإضافية
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                const userData = userDoc.data();
+                
+                // إخفاء صفحات تسجيل الدخول
+                document.getElementById('loginPage').classList.remove('active');
+                document.getElementById('registerPage').classList.remove('active');
+                
+                // إظهار الصفحة الرئيسية
+                document.getElementById('home').classList.add('active');
+                
+                // عرض معلومات المستخدم
+                document.getElementById('userName').textContent = userData?.name || user.email;
+                document.getElementById('userInfo').classList.add('show');
+                
+                // تحميل البيانات
+                loadStrategies();
+                updateStats();
+            } else {
+                window.currentUser = null;
+                document.getElementById('userInfo').classList.remove('show');
+                showLogin();
+            }
+        });
+
+        // تسجيل دخول
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                showSuccess('loginSuccess', 'تم تسجيل الدخول بنجاح!');
+            } catch (error) {
+                showError('loginError', getErrorMessage(error.code));
+            }
+        });
+
+        // إنشاء حساب جديد
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // التحقق من Firebase
+            if (!window.auth) {
+                showError('registerError', '⚠️ يجب إعداد Firebase أولاً! اتبعي التعليمات في ملف FIREBASE_SETUP.md');
+                return;
+            }
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const subject = document.getElementById('registerSubject').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showError('registerError', 'كلمات المرور غير متطابقة');
+                return;
+            }
+            
+            try {
+                // تعطيل الزر
+                const btn = document.getElementById('registerBtn');
+                btn.disabled = true;
+                btn.textContent = 'جاري الإنشاء...';
+                
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                
+                // تحديث الملف الشخصي
+                await updateProfile(user, { displayName: name });
+                
+                // حفظ البيانات الإضافية
+                await setDoc(doc(db, 'users', user.uid), {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    createdAt: new Date().toISOString()
+                });
+                
+                showSuccess('registerSuccess', 'تم إنشاء الحساب بنجاح!');
+                setTimeout(() => {
+                    document.getElementById('registerForm').reset();
+                    btn.disabled = false;
+                    btn.textContent = 'إنشاء الحساب';
+                }, 1500);
+            } catch (error) {
+                console.error('Registration error:', error);
+                showError('registerError', getErrorMessage(error.code));
+                const btn = document.getElementById('registerBtn');
+                btn.disabled = false;
+                btn.textContent = 'إنشاء الحساب';
+            }
+        });
+
+        // رفع استراتيجية جديدة
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!window.currentUser) {
+                showError('uploadError', 'يجب تسجيل الدخول أولاً');
+                return;
+            }
+            
+            const name = document.getElementById('strategyName').value;
+            const description = document.getElementById('strategyDescription').value;
+            const fileInput = document.getElementById('strategyFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showError('uploadError', 'يجب اختيار ملف');
+                return;
+            }
+            
+            if (file.size > 10 * 1024 * 1024) {
+                showError('uploadError', 'حجم الملف يجب أن يكون أقل من 10 ميجابايت');
+                return;
+            }
+            
+            try {
+                // تعطيل زر الإرسال
+                const submitBtn = e.target.querySelector('.submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'جاري الرفع...';
+                
+                // رفع الملف
+                const timestamp = Date.now();
+                const fileRef = ref(storage, `strategies/${window.currentUser.uid}/${timestamp}_${file.name}`);
+                await uploadBytes(fileRef, file);
+                const fileURL = await getDownloadURL(fileRef);
+                
+                // الحصول على بيانات المستخدم
+                const userDoc = await getDoc(doc(db, 'users', window.currentUser.uid));
+                const userData = userDoc.data();
+                
+                // حفظ البيانات في Firestore
+                await addDoc(collection(db, 'strategies'), {
+                    name: name,
+                    description: description,
+                    fileURL: fileURL,
+                    fileName: file.name,
+                    teacherName: userData.name,
+                    teacherEmail: window.currentUser.email,
+                    subject: userData.subject,
+                    userId: window.currentUser.uid,
+                    createdAt: new Date().toISOString()
+                });
+                
+                showSuccess('uploadSuccess', 'تم رفع الاستراتيجية بنجاح!');
+                document.getElementById('uploadForm').reset();
+                document.getElementById('fileInfo').textContent = '';
+                
+                // تحديث الإحصائيات
+                updateStats();
+                
+                // إعادة تفعيل الزر
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'رفع الاستراتيجية';
+                
+            } catch (error) {
+                console.error(error);
+                showError('uploadError', 'حدث خطأ أثناء رفع الملف. حاولي مرة أخرى.');
+                
+                // إعادة تفعيل الزر
+                const submitBtn = e.target.querySelector('.submit-btn');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'رفع الاستراتيجية';
+            }
+        });
+
+        // عرض معلومات الملف المختار
+        document.getElementById('strategyFile').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const fileInfo = document.getElementById('fileInfo');
+                fileInfo.textContent = `✓ تم اختيار: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+            }
+        });
+
+        // تحميل قائمة الاستراتيجيات
+        async function loadStrategies() {
+            try {
+                const loadingDiv = document.getElementById('loadingStrategies');
+                const tableContainer = document.getElementById('strategiesTableContainer');
+                
+                loadingDiv.style.display = 'block';
+                tableContainer.style.display = 'none';
+                
+                const q = query(collection(db, 'strategies'), orderBy('createdAt', 'desc'));
+                const querySnapshot = await getDocs(q);
+                
+                const tbody = document.getElementById('strategiesTableBody');
+                tbody.innerHTML = '';
+                
+                if (querySnapshot.empty) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 2rem; color: #666;">
+                                لا توجد استراتيجيات مرفوعة حتى الآن
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        const row = document.createElement('tr');
+                        
+                        const date = new Date(data.createdAt);
+                        const formattedDate = date.toLocaleDateString('ar-SA');
+                        
+                        row.innerHTML = `
+                            <td>${data.teacherName}</td>
+                            <td>${data.subject}</td>
+                            <td>${data.name}</td>
+                            <td>${formattedDate}</td>
+                            <td><a href="${data.fileURL}" target="_blank" class="download-btn">تحميل</a></td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+                
+                loadingDiv.style.display = 'none';
+                tableContainer.style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading strategies:', error);
+                document.getElementById('loadingStrategies').innerHTML = `
+                    <div style="color: #c62828;">حدث خطأ في تحميل البيانات</div>
+                `;
+            }
+        }
+
+        // تحديث الإحصائيات
+        async function updateStats() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'strategies'));
+                
+                // إجمالي الاستراتيجيات
+                const totalStrategies = querySnapshot.size;
+                document.getElementById('totalStrategies').textContent = totalStrategies;
+                
+                // عدد المعلمات الفريد
+                const uniqueTeachers = new Set();
+                const subjectCounts = {};
+                
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    uniqueTeachers.add(data.userId);
+                    
+                    // حساب المواد
+                    if (data.subject) {
+                        subjectCounts[data.subject] = (subjectCounts[data.subject] || 0) + 1;
+                    }
+                });
+                
+                document.getElementById('totalTeachers').textContent = uniqueTeachers.size;
+                
+                // أكثر مادة تفاعلاً
+                let topSubject = '-';
+                let maxCount = 0;
+                for (const [subject, count] of Object.entries(subjectCounts)) {
+                    if (count > maxCount) {
+                        maxCount = count;
+                        topSubject = subject;
+                    }
+                }
+                document.getElementById('topSubject').textContent = topSubject;
+                
+            } catch (error) {
+                console.error('Error updating stats:', error);
+            }
+        }
+
+        // دوال مساعدة
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccess(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 3000);
+        }
+
+        function getErrorMessage(code) {
+            const errors = {
+                'auth/email-already-in-use': 'البريد الإلكتروني مستخدم بالفعل',
+                'auth/invalid-email': 'البريد الإلكتروني غير صحيح',
+                'auth/weak-password': 'كلمة المرور ضعيفة (يجب أن تكون 6 أحرف على الأقل)',
+                'auth/user-not-found': 'المستخدم غير موجود',
+                'auth/wrong-password': 'كلمة المرور غير صحيحة',
+                'auth/too-many-requests': 'محاولات كثيرة. حاولي لاحقاً',
+            };
+            return errors[code] || 'حدث خطأ. حاولي مرة أخرى';
+        }
+
+        // جعل الدوال عامة
+        window.loadStrategies = loadStrategies;
+        window.updateStats = updateStats;
+    </script>
+
+    <script>
+        // التنقل بين الصفحات
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                if (section.id === 'loginPage' || section.id === 'registerPage') return;
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // تحديث البيانات إذا كانت صفحة القائمة أو الإحصائيات
+            if (sectionId === 'list' && window.loadStrategies) {
+                window.loadStrategies();
+            }
+            if (sectionId === 'impact' && window.updateStats) {
+                window.updateStats();
+            }
+        }
+
+        function showLogin() {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById('loginPage').classList.add('active');
+        }
+
+        function showRegister() {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById('registerPage').classList.add('active');
+        }
+
+        async function logout() {
+            if (window.auth && confirm('هل أنت متأكدة من تسجيل الخروج؟')) {
+                try {
+                    const { signOut } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js');
+                    await signOut(window.auth);
+                } catch (error) {
+                    console.error('Error signing out:', error);
+                }
+            }
+        }
+
+        // معالج التسجيل مع فحص الأخطاء
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const subject = document.getElementById('registerSubject').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            // التحقق من تطابق كلمات المرور
+            if (password !== confirmPassword) {
+                showErrorMessage('registerError', 'كلمات المرور غير متطابقة');
+                return false;
+            }
+            
+            // التحقق من طول كلمة المرور
+            if (password.length < 6) {
+                showErrorMessage('registerError', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+                return false;
+            }
+            
+            // التحقق من Firebase
+            if (!window.auth) {
+                showErrorMessage('registerError', '⚠️ يجب إعداد Firebase أولاً! اتبعي التعليمات في ملف FIREBASE_SETUP.md');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // دالة لإظهار رسائل الخطأ
+        function showErrorMessage(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        // دالة لإظهار رسائل النجاح
+        function showSuccessMessage(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 3000);
+        }
+
+        // وضع التجربة بدون Firebase
+        function testWithoutFirebase() {
+            if (confirm('هل تريدين الدخول لتجربة الموقع؟\n\nملاحظة: لن يتم حفظ أي بيانات حقيقية، هذا للاختبار فقط.')) {
+                // إخفاء صفحات تسجيل الدخول
+                document.getElementById('loginPage').classList.remove('active');
+                document.getElementById('registerPage').classList.remove('active');
+                
+                // إظهار الصفحة الرئيسية
+                document.getElementById('home').classList.add('active');
+                
+                // عرض معلومات تجريبية
+                document.getElementById('userName').textContent = 'المعلمة التجريبية';
+                document.getElementById('userInfo').classList.add('show');
+                
+                // تحميل بيانات تجريبية
+                loadTestData();
+            }
+        }
+
+        // تحميل بيانات تجريبية
+        function loadTestData() {
+            // إضافة بيانات تجريبية للجدول
+            const tbody = document.getElementById('strategiesTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td>أ. نورة المالكي</td>
+                    <td>رياضيات</td>
+                    <td>استراتيجية التعلم النشط</td>
+                    <td>2024/03/14</td>
+                    <td><span style="color: #999;">تجريبي</span></td>
+                </tr>
+                <tr>
+                    <td>أ. مشاعل الشريف</td>
+                    <td>فيزياء</td>
+                    <td>استراتيجية حل المشكلات</td>
+                    <td>2024/03/13</td>
+                    <td><span style="color: #999;">تجريبي</span></td>
+                </tr>
+                <tr>
+                    <td>أ. هله النفيعي</td>
+                    <td>كيمياء</td>
+                    <td>استراتيجية التفكير الناقد</td>
+                    <td>2024/03/12</td>
+                    <td><span style="color: #999;">تجريبي</span></td>
+                </tr>
+            `;
+            
+            // تحديث الإحصائيات التجريبية
+            document.getElementById('totalStrategies').textContent = '3';
+            document.getElementById('totalTeachers').textContent = '3';
+            document.getElementById('topSubject').textContent = 'رياضيات';
+            
+            // إخفاء شاشة التحميل
+            document.getElementById('loadingStrategies').style.display = 'none';
+            document.getElementById('strategiesTableContainer').style.display = 'block';
+            
+            // تعطيل رفع الملفات في الوضع التجريبي
+            const uploadForm = document.getElementById('uploadForm');
+            if (uploadForm) {
+                uploadForm.onsubmit = function(e) {
+                    e.preventDefault();
+                    showErrorMessage('uploadError', '⚠️ وضع تجريبي: لا يمكن رفع ملفات حقيقية. قومي بإعداد Firebase أولاً.');
+                    return false;
+                };
+            }
+        }
+    </script>
+</body>
+</html>
